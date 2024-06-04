@@ -1,10 +1,11 @@
-##Smart Waste management
+## Smart Waste management
 
-###How to access the project.
+### How to access the project.
+
 `https://github.com/O-keita/Smart_Waste_Management_G7.git`
 clone the project
 
-#####Linux Computer:
+##### Linux Computer:
 
 virtual env
 
