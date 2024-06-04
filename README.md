@@ -9,25 +9,25 @@ clone the project
 
 virtual env
 
-`python3 -m venv venv`
+```python3 -m venv venv```
 
 activate virtual env
 
-`source venv/bin/activate`
+```source venv/bin/activate```
 
 run app.py
 
-`python3 app.py`
+```python3 app.py```
 
 
 #### Windows Computer
 virtual env
 
-`python3 -m venv venv`
+```python3 -m venv venv```
 
 activate virtual env
 
 ```venv\Scripts\activate```
 run app.py
 
-`python3 app.py`
+```python3 app.py```
