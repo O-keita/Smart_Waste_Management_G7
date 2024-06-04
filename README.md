@@ -1,0 +1,1 @@
+# Smart_Waste_Management_G7
