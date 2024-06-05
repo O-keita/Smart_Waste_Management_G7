@@ -1,5 +1,5 @@
 from flask import render_template, flash, redirect, url_for
-from app.forms import Registration, LoginForm, Recycling, Scheduling
+from app.forms import Registration, LoginForm, Recycling, Scheduling, updateAccount
 from app.models import User
 from app import app, bcrypt, db
 from flask_login import login_user, current_user, logout_user, login_required
@@ -64,8 +64,16 @@ def schedule():
 @app.route('/account', methods=['GET', 'POST'])
 @login_required
 def account():
+    form = updateAccount()
+    if form.validate_on_submit():
+
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        db.session.commit()
+ 
+        
     img_file = current_user.image_file
-    return render_template('account.html', img_file=img_file)
+    return render_template('account.html', img_file=img_file, form=form)
 
 
 @app.route('/user_dashboard', methods=['GET', 'POST'])
