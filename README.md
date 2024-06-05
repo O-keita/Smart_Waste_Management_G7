@@ -31,3 +31,5 @@ activate virtual env
 run app.py
 
 ```python3 app.py```
+#### After successfully accessing the project, Go to the Static and Templates Directory for
+#### Your Frontend Devevlopment
