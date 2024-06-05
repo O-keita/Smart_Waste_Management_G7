@@ -9,6 +9,25 @@
       href="{{url_for('static', filename='css/main.css')}}"
     />
   </head>
+  <header>
+    <h3>The links Below are the nav-links to different pages</h3>
+    <ul>
+      <!-- In flask url_for is use to connect different pages -->
+
+      {% if current_user.is_authenticated %}
+      <li><a href="{{url_for('recycle')}}">Recycle</a></li>
+      <li><a href="{{url_for('schedule')}}">Schedule</a></li>
+      <li><a href="{{url_for('logout')}}">Logout</a></li>
+      <li><a href="{{url_for('user_dashboard')}}">User Dashboard</a></li>
+      <li><a href="{{url_for('admin_dashboard')}}">Admin Dashboard</a></li>
+      {% else %}
+      <li><a href="{{url_for('login')}}">Login</a></li>
+      <li><a href="{{url_for('register')}}">Register</a></li>
+
+      {% endif %}
+    </ul>
+  </header>
+
   {% block content %} {% endblock %}
   <body></body>
 </html>
