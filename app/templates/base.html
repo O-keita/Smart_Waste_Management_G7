@@ -17,9 +17,10 @@
       {% if current_user.is_authenticated %}
       <li><a href="{{url_for('recycle')}}">Recycle</a></li>
       <li><a href="{{url_for('schedule')}}">Schedule</a></li>
-      <li><a href="{{url_for('logout')}}">Logout</a></li>
+      <li><a href="{{url_for('account')}}">Account</a></li>
       <li><a href="{{url_for('user_dashboard')}}">User Dashboard</a></li>
       <li><a href="{{url_for('admin_dashboard')}}">Admin Dashboard</a></li>
+      <li><a href="{{url_for('logout')}}">Logout</a></li>
       {% else %}
       <li><a href="{{url_for('login')}}">Login</a></li>
       <li><a href="{{url_for('register')}}">Register</a></li>

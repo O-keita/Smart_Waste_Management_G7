@@ -45,6 +45,7 @@ def register():
 
     return render_template('register.html', form=form)
 
+
 @app.route('/recycle', methods=['GET', 'POST'])
 @login_required
 def recycle():
@@ -60,6 +61,11 @@ def schedule():
     form = Scheduling()
 
     return render_template('schedule.html', form=form)
+@app.route('/account', methods=['GET', 'POST'])
+@login_required
+def account():
+    img_file = current_user.image_file
+    return render_template('account.html', img_file=img_file)
 
 
 @app.route('/user_dashboard', methods=['GET', 'POST'])
@@ -67,8 +73,8 @@ def schedule():
 def user_dashboard():
 
     return render_template('user_dashboard.html')
-
 @app.route('/admin_dashboard', methods=['GET', 'POST'])
+
 @login_required
 def admin_dashboard():
 
