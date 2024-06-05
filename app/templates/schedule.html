@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+  <h1>Schedule Waste Collection</h1>
+  <form method="POST" action="{{ url_for('schedule') }}">
+    {{ form.hidden_tag() }}
+    <fieldset>
+      <legend>Waste Collection Schedule</legend>
+      <div class="form-group">
+        {{ form.date.label(class="form-label") }} {{
+        form.date(class="form-control") }}
+      </div>
+      <div class="form-group">
+        {{ form.type.label(class="form-label") }} {{
+        form.type(class="form-control") }}
+      </div>
+      <div class="form-group">{{ form.submit(class="btn btn-primary") }}</div>
+    </fieldset>
+  </form>
+</div>
+{% endblock %}

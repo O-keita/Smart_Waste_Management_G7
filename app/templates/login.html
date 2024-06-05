@@ -1,0 +1,28 @@
+{% extends 'base.html'%} {% block content %}
+
+<div class="login-form">
+  <form action="" method="POST">
+    {{form.hidden_tag() }}
+    <fieldset>
+      <legend>Login</legend>
+      <div>
+        {{form.email.label}}
+        <!-- username label    -->
+        {{form.email}}<!-- username input -->
+      </div>
+      <div>
+        {{form.password.label}}
+        <!-- username label    -->
+        {{form.password}}<!-- username input -->
+      </div>
+      <div>
+        {{form.submit}}
+        <!-- submit btn -->
+
+        <a href="{{ url_for('register')}}">Not Registered?</a>
+      </div>
+    </fieldset>
+  </form>
+  <a href="{{url_for('home')}}">Back to Home</a>
+</div>
+{% endblock %}

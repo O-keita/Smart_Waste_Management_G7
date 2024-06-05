@@ -1,0 +1,15 @@
+{% extends 'base.html'%} {% block content %}
+
+<h1>Hello G7</h1>
+
+<h2>This is the Home Page</h2>
+<h3>The links Below are the nav-links to different pages</h3>
+<ul>
+  <!-- In flask url_for is use to connect different pages -->
+  <li><a href="{{url_for('login')}}">Login</a></li>
+  <li><a href="{{url_for('register')}}">Register</a></li>
+  <li><a href="{{url_for('recycle')}}">Recycle</a></li>
+  <li><a href="{{url_for('schedule')}}">Schedule</a></li>
+</ul>
+
+{% endblock %}
