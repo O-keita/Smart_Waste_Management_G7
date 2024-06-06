@@ -1,14 +1,16 @@
 {% extends 'base.html'%} {% block content %}
 
-<form action="" method="POST">
-  <img src="{{img_file}}" alt="" />
+<form action="" method="POST" enctype="multipart/form-data">
   {{form.hidden_tag()}}
   <fieldset>
-    <legend>Account</legend>
+    <legend>Account Info</legend>
+    <img src="{{img_file}}" alt="" />
+
     <h1>{{current_user.username}}</h1>
     <h3>{{current_user.email}}</h3>
     <div>{{form.username.label}} {{form.username}}</div>
     <div>{{ form.email.label }} {{form.email}}</div>
+    <div>{{form.picture}}</div>
     <div>{{form.submit}}</div>
   </fieldset>
 </form>

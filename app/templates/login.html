@@ -1,34 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - Smart Waste Management</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
     <script src="script.js" defer></script>
-</head>
-<body class="bg-gray-100 flex justify-center items-center h-screen">
-    <div class="bg-white p-8 rounded-lg shadow-lg w-96">
+  </head>
+  <form action="" method="POST">
+    {{ form.hidden_tag() }}
+    <body class="bg-gray-100 flex justify-center items-center h-screen">
+      <div class="bg-white p-8 rounded-lg shadow-lg w-96">
         <h2 class="text-2xl font-bold mb-6">Login</h2>
         <form id="loginForm">
-            <div class="mb-4 relative">
-                <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
-                <div class="relative">
-                    <input type="text" id="username" name="username" class="mt-1 block w-full p-2 border border-gray-300 rounded-md pl-10" required>
-                    <i class="fas fa-user absolute top-3 left-3 text-gray-400"></i>
-                </div>
+          <div class="mb-4 relative">
+            <label
+              for="username"
+              class="block text-sm font-medium text-gray-700"
+              >{{ form.email.label }}</label
+            >
+            <div class="relative">
+              {{form.email}}
+              <i class="fas fa-user absolute top-3 left-3 text-gray-400"></i>
             </div>
-            <div class="mb-6 relative">
-                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                <div class="relative">
-                    <input type="password" id="password" name="password" class="mt-1 block w-full p-2 border border-gray-300 rounded-md pl-10" required>
-                    <i class="fas fa-lock absolute top-3 left-3 text-gray-400"></i>
-                </div>
+          </div>
+          <div class="mb-6 relative">
+            <label
+              for="password"
+              class="block text-sm font-medium text-gray-700"
+              >{{ form.password.label }}</label
+            >
+            <div class="relative">
+              {{form.password}}
+              <i class="fas fa-lock absolute top-3 left-3 text-gray-400"></i>
             </div>
-            <button type="submit" class="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600">Login</button>
+          </div>
+          <button
+            type="submit"
+            class="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600"
+          >
+            {{ form.submit }}
+          </button>
         </form>
-        <p class="mt-4 text-center">Don't have an account? <a href="register.html" class="text-blue-500 hover:underline">Sign up</a></p>
-    </div>
-</body>
+        <p class="mt-4 text-center">
+          Don't have an account?
+          <a href="register.html" class="text-blue-500 hover:underline"
+            >Sign up</a
+          >
+        </p>
+      </div>
+    </body>
+  </form>
 </html>

@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, DateField, SelectField, IntegerField
 
 from wtforms.validators import DataRequired, Length, Email, EqualTo, NumberRange, ValidationError
@@ -52,9 +53,11 @@ class Recycling(FlaskForm):
 class Scheduling(FlaskForm):
     date = DateField('Date', format='%Y-%m-%d', validators=[DataRequired()], render_kw={"placeholder": "YYYY-MM-DD"})
     type = SelectField('Type', choices=[('plastic', 'Plastic'), ('paper', 'Paper'), ('metal', 'Metal'), ('glass', 'Glass'), ('all', 'All')], validators=[DataRequired()])
-    submit = SubmitField('Submit')
+    submit = SubmitField('Create Schedule')
 
 class updateAccount(FlaskForm):
+
+    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     username = StringField('Username',
                             validators=[DataRequired(), Length(min=2, max=20)])
     email =  StringField('Email',
