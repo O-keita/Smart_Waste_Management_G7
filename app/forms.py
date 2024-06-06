@@ -35,13 +35,13 @@ class Registration(FlaskForm):
 class LoginForm(FlaskForm):
 
     email =  StringField('Email',
-                          validators=[DataRequired(), Email() ])
+                          validators=[DataRequired(), Email() ],  render_kw={'class': 'mt-1 block w-full p-4 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none'})
 
     password = PasswordField('Passwordd',
-                             validators=[DataRequired()])
+                             validators=[DataRequired()],  render_kw={'class': 'mt-1 block w-full p-4 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none'})
     
-    remember = BooleanField("Remember Me")
-    submit = SubmitField('Sign Up')
+    remember = BooleanField("Remember Me",  render_kw={'class': 'mt-1 block w-full p-4 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none'})
+    submit = SubmitField('Sign Up', render_kw={'class':"w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600"})
 
 
 class Recycling(FlaskForm):
