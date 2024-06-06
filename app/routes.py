@@ -39,10 +39,18 @@ def register():
     form = Registration()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.username.data, email=form.email.data, password=hashed_password)
+        user = User(first_name=form.first_name.data,
+                    middle_name =form.middle_name.data,
+                    last_name=form.last_name.data,
+                    email=form.email.data, password=hashed_password,
+                    sex=form.sex.data, address=form.address.data, 
+                    house_number=form.house_number.data, 
+                    location=form.location.data, 
+                    phone_number=form.phone_number.data, 
+                    )
         db.session.add(user)
         db.session.commit()
-        flash(f'Account Created for {form.username.data}', 'success')
+        flash(f'Account Created for {form.first_name.data}', 'success')
 
         return redirect(url_for('home'))
 
@@ -91,12 +99,14 @@ def account():
 
      
 
-        current_user.username = form.username.data
+        current_user.fist_name = form.first_name.data
+        current_user.last_name = form.last_name.data
         current_user.email = form.email.data
         db.session.commit()
 
     elif request.method == 'GET':
-        form.username.data = current_user.username
+        form.first_name.data = current_user.first_name
+        form.last_name.data = current_user.last_name
         form.email.data = current_user.email
  
         
