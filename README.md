@@ -5,7 +5,7 @@
 `https://github.com/O-keita/Smart_Waste_Management_G7.git`
 clone the project
 
-#### Linux Computer or maOs:
+### Linux Computer or maOs:
 
 #### virtual env
 
@@ -15,18 +15,29 @@ clone the project
 
 `source venv/bin/activate`
 
-run run.py
+#### Install requirements.txt
+
+`pip install -r requirements.txt`
+
+#### run run.py
 
 `python3 run.py`
 
-virtual env
+### Windows Computer
 
-`python3 -m venv venv`
+#### virtual env
 
-activate virtual env
+`python -m venv venv`
+
+#### activate virtual env
 
 `venv\Scripts\activate`
-run run.py
+
+#### Install requirements.txt
+
+`pip install -r requirements.txt`
+
+#### run run.py
 
 `python run.py`
 
