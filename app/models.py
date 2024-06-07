@@ -14,7 +14,7 @@ class User(db.Model, UserMixin):
     address = db.Column(db.String(50), nullable=False)
     house_number = db.Column(db.String(50), nullable=False)
     location = db.Column(db.String(50), nullable=False)
-    image_file = db.Column(db.String(500), nullable=False, default='default.jpegx')
+    image_file = db.Column(db.String(500), nullable=False, default='default.jpg')
     phone_number = db.Column(db.Integer, nullable=False)
     password = db.Column(db.String(50), nullable=False)
     schedule = db.relationship('Scheduling', backref='customer', lazy=True)

@@ -5,31 +5,42 @@
 `https://github.com/O-keita/Smart_Waste_Management_G7.git`
 clone the project
 
-#### Linux Computer:
+### Linux Computer or maOs:
 
-virtual env
+#### virtual env
 
-```python3 -m venv venv```
+`python3 -m venv venv`
 
-activate virtual env
+#### activate virtual env
 
-```source venv/bin/activate```
+`source venv/bin/activate`
 
-run app.py
+#### Install requirements.txt
 
-```python3 app.py```
+`pip install -r requirements.txt`
 
+#### run run.py
 
-#### Windows Computer
-virtual env
+`python3 run.py`
 
-```python3 -m venv venv```
+### Windows Computer
 
-activate virtual env
+#### virtual env
 
-```venv\Scripts\activate```
-run app.py
+`python -m venv venv`
 
-```python3 app.py```
+#### activate virtual env
+
+`venv\Scripts\activate`
+
+#### Install requirements.txt
+
+`pip install -r requirements.txt`
+
+#### run run.py
+
+`python run.py`
+
 #### After successfully accessing the project, Go to the Static and Templates Directory for
+
 #### Your Frontend Devevlopment

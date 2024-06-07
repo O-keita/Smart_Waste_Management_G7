@@ -99,7 +99,7 @@ def account():
 
      
 
-        current_user.fist_name = form.first_name.data
+        current_user.first_name = form.first_name.data
         current_user.last_name = form.last_name.data
         current_user.email = form.email.data
         db.session.commit()
