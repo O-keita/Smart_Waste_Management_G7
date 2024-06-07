@@ -17,9 +17,7 @@ clone the project
 
 run run.py
 
-`python3 app.py`
-
-#### Windows Computer
+`python3 run.py`
 
 virtual env
 
@@ -30,7 +28,7 @@ activate virtual env
 `venv\Scripts\activate`
 run run.py
 
-`python3 app.py`
+`python run.py`
 
 #### After successfully accessing the project, Go to the Static and Templates Directory for
 
