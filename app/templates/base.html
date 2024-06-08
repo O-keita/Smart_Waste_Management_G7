@@ -3,33 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Smart Waste Managemnet</title>
+    <title>Smart Waste Management</title>
     <link
       rel="stylesheet"
       href="{{url_for('static', filename='css/main.css')}}"
     />
   </head>
-  <header>
-    <h3>The links Below are the nav-links to different pages</h3>
-    <ul>
-      <!-- In flask url_for is use to connect different pages -->
-
-      {% if current_user.is_authenticated %}
-      <li><a href="{{url_for('recycle')}}">Recycle</a></li>
-      <li><a href="{{url_for('schedule')}}">Schedule</a></li>
-      <li><a href="{{url_for('account')}}">Account</a></li>
-      <li><a href="{{url_for('user_dashboard')}}">User Dashboard</a></li>
-      <li><a href="{{url_for('admin_dashboard')}}">Admin Dashboard</a></li>
-      <li><a href="{{url_for('logout')}}">Logout</a></li>
-      {% else %}
-      <li><a href="{{url_for('login')}}">Login</a></li>
-      <li><a href="{{url_for('register')}}">Register</a></li>
-
-      {% endif %}
-    </ul>
-  </header>
-
   <body>
-    {% block content %} {% endblock %}
+    <header class="main-header">
+      <h3 class="header-text">The links Below are the nav-links to different pages</h3>
+      <ul class="nav-list">
+        <!-- In flask url_for is use to connect different pages -->
+        {% if current_user.is_authenticated %}
+        <li class="nav-item"><a class="nav-link" href="{{url_for('recycle')}}">Recycle</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('schedule')}}">Schedule</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('account')}}">Account</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('user_dashboard')}}">User Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('admin_dashboard')}}">Admin Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('logout')}}">Logout</a></li>
+        {% else %}
+        <li class="nav-item"><a class="nav-link" href="{{url_for('login')}}">Login</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('register')}}">Register</a></li>
+        {% endif %}
+      </ul>
+    </header>
+
+    <main class="content">
+      {% block content %} {% endblock %}
+    </main>
   </body>
 </html>
