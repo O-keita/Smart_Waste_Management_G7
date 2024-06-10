@@ -1,9 +1,10 @@
 import os
 import secrets
+from datetime import datetime
 from PIL import Image
 from flask import render_template, flash, redirect, url_for, request
-from app.forms import Registration, LoginForm, Recycling, Scheduling, updateAccount
-from app.models import User
+from app.forms import Registration, LoginForm, Recycling, Scheduling_form, updateAccount
+from app.models import User,Scheduling
 from app import app, bcrypt, db
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -63,13 +64,29 @@ def recycle():
 
     form = Recycling()
 
+    
+
+
     return render_template('recycle.html', form=form)
 
 @app.route('/schedule', methods=['GET', 'POST'])
 @login_required
 def schedule():
 
-    form = Scheduling()
+    
+    form = Scheduling_form()
+
+
+    if form.validate_on_submit():
+
+      
+        Schedule = Scheduling(date=form.date.data, type=form.type.data, user_id=current_user.id)
+
+        db.session.add(Schedule)
+        db.session.commit()
+        flash('Schedule Created', 'success')
+        return redirect(url_for('user_dashboard'))
+    
 
     return render_template('schedule.html', form=form)
 
@@ -118,7 +135,13 @@ def account():
 @login_required
 def user_dashboard():
 
-    return render_template('user_dashboard.html')
+
+
+    user_schedule = Scheduling.query.filter_by(user_id=current_user.id).all()
+
+
+
+    return render_template('user_dashboard.html', user_schedule=user_schedule, datetime=datetime)
 @app.route('/admin_dashboard', methods=['GET', 'POST'])
 
 @login_required

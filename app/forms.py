@@ -67,7 +67,7 @@ class Recycling(FlaskForm):
     amount = IntegerField('Amount (in kg)', validators=[DataRequired(), NumberRange(min=1)], render_kw={"placeholder": "Enter amount in kg"})
     submit = SubmitField('Submit')
 
-class Scheduling(FlaskForm):
+class Scheduling_form(FlaskForm):
     date = DateField('Date', format='%Y-%m-%d', validators=[DataRequired()], render_kw={"placeholder": "YYYY-MM-DD"})
     type = SelectField('Type', choices=[('plastic', 'Plastic'), ('paper', 'Paper'), ('metal', 'Metal'), ('glass', 'Glass'), ('all', 'All')], validators=[DataRequired()])
     submit = SubmitField('Create Schedule')
