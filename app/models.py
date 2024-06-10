@@ -9,14 +9,14 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(50), nullable=False)
     middle_name = db.Column(db.String(50), nullable=False, default="")
     last_name = db.Column(db.String(50), nullable=False)
-    email = db.Column(db.String(50), unique=True, nullable=False)
-    sex = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(50), unique=True, nullable=False,)
+    sex = db.Column(db.String(50), nullable=False, default='Male')
     address = db.Column(db.String(50), nullable=False)
     house_number = db.Column(db.String(50), nullable=False)
     location = db.Column(db.String(50), nullable=False)
     image_file = db.Column(db.String(500), nullable=False, default='default.jpg')
-    phone_number = db.Column(db.Integer, nullable=False)
-    password = db.Column(db.String(50), nullable=False)
+    phone_number = db.Column(db.String(50), nullable=False)
+    password = db.Column(db.String(150), nullable=False)
     schedule = db.relationship('Scheduling', backref='customer', lazy=True)
 
 

@@ -1,4 +1,4 @@
-#!/Users/williedaniels/G-7/Smart_Waste_Management_G7/venv/bin/python3.11
+#!/home/omar/alu_projects/Smart_Waste_Management_G7/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
