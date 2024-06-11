@@ -208,6 +208,32 @@ def admin_dashboard():
     return render_template('admin_dashboard.html', users=users, user_schedule=user_schedule, number_of_users=number_of_users, collected=collected, datetime=datetime, unique_location=unique_location)     
 
 
+@app.route('/admin_dashboard/user_schedule', methods=['GET', 'POST'])
+@login_required
+def admin_user_schedule():
+
+    if not current_user.is_admin:
+        abort(403)
+        flash('Access Denied', 'danger')
+
+    user_schedule = Scheduling.query.all()
+    users = User.query.all()
+
+    return render_template('user_schedule.html', user_schedule=user_schedule, datetime=datetime, users=users)
+
+
+@app.route('/admin_dashboard/users', methods=['GET', 'POST'])
+@login_required
+def users():
+
+    if not current_user.is_admin:
+        abort(403)
+        flash('Access Denied', 'danger')
+
+    user_schedule = Scheduling.query.all()
+    users = User.query.all()
+
+    return render_template('users.html', user_schedule=user_schedule, datetime=datetime, users=users)
 
 
 

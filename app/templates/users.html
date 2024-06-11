@@ -1,0 +1,87 @@
+{% extends 'admin_base.html' %} {% block sidebar %}
+<ul class="side-menu top">
+  <li>
+    <a href="{{url_for('admin_dashboard')}}">
+      <i class="bx bxs-dashboard"></i>
+      <span class="text">Dashboard</span>
+    </a>
+  </li>
+
+  <li class="active">
+    <a href="{{url_for('users')}}">
+      <i class="bx bxs-group"></i>
+      <span class="text">Users</span>
+    </a>
+  </li>
+
+  <li>
+    <a href="{{url_for('admin_user_schedule')}}">
+      <i class="bx bx-calendar"></i>
+      <span class="text">Schedules</span>
+    </a>
+  </li>
+</ul>
+{% endblock %} {% block content %}
+
+<!-- MAIN -->
+<main>
+  <div class="head-title">
+    <div class="left">
+      <h1>Waste Collection Users</h1>
+      <ul class="breadcrumb">
+        <li>
+          <a href="{{url_for('admin_dashboard')}}">Users</a>
+        </li>
+        <li><i class="bx bx-chevron-right"></i></li>
+        <li>
+          <a class="active" href="{{url_for('home')}}">Home</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="table-data">
+    <div class="order">
+      <div class="head">
+        <h3>Waste Collection Users</h3>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Firt Name</th>
+            <th>Last Name</th>
+            <th>location</th>
+            <th>Phone No.</th>
+            <th>House No.</th>
+
+            <th>Sex</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+          <tr>
+            <td>
+              <img
+                src="{{ url_for('static', filename='profile_pics/' + user.image_file) }}"
+              />
+            </td>
+            <td>{{ user.first_name }}</td>
+            <td>{{ user.last_name }}</td>
+            <td>
+              <p>{{ user.location}}</p>
+            </td>
+
+            <td>{{ user.phone_number }}</td>
+            <td>{{ user.house_number }}</td>
+            <td>
+              <p>{{ user.sex }}</p>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+{% endblock %}
