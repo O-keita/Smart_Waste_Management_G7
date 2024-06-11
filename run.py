@@ -2,8 +2,10 @@
 
 
 if __name__ == '__main__':
-    from app import app
-    from app import db
+
+    from app import app, db, admin
+    
+    
     with app.app_context():
         db.create_all()
     app.run(debug=True) 

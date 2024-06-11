@@ -1,239 +1,239 @@
 /* main.css */
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f38686;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .main-header {
-    background: #322f2f;
-    color: #fc0101;
-    padding: 20px 0;
-    text-align: center;
-  }
-  
-  .header-text {
-    margin: 0;
-    padding: 10px;
-  }
-  
-  .nav-list {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .nav-item {
-    display: inline;
-  }
-  
-  .nav-link {
-    text-decoration: none;
-    color: #fff;
-    padding: 10px 20px;
-    background: #444;
-    border-radius: 5px;
-    transition: background 0.3s;
-  }
-  
-  .nav-link:hover {
-    background: #555;
-  }
-  
-  .content {
-    padding: 20px;
-  }
-  
+  font-family: Arial, sans-serif;
+  background-color: #f38686;
+  margin: 0;
+  padding: 0;
+}
+
+.main-header {
+  background: #322f2f;
+  color: #fc0101;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.header-text {
+  margin: 0;
+  padding: 10px;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.nav-item {
+  display: inline;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #fff;
+  padding: 10px 20px;
+  background: #444;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.nav-link:hover {
+  background: #555;
+}
+
+.content {
+  padding: 20px;
+}
+
 /* login.css */
 
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-  }
-  
-  body.bg-gray-100 {
-    background-color: #f7f7f7;
-  }
-  
-  body.flex {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  body.items-center {
-    align-items: center;
-  }
-  
-  body.h-screen {
-    height: 100vh;
-  }
-  
-  div.bg-white {
-    background-color: #fff;
-    padding: 2rem;
-    border: 1px solid #ddd;
-    border-radius: 0.5rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  h2.text-2xl {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-  }
-  
-  label.block {
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-  
-  label.text-sm {
-    font-size: 1.2rem;
-  }
-  
-  label.text-gray-700 {
-    color: #333;
-  }
-  
-  input[type="text"],
-  input[type="email"],
-  input[type="password"] {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 0.5rem;
-    width: 100%;
-  }
-  
-  input[type="submit"] {
-    background-color: #333;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-  }
-  
-  input[type="submit"]:hover {
-    background-color: #444;
-  }
-  
-  i.fas {
-    font-size: 1.5rem;
-    position: absolute;
-    top: 0.5rem;
-    left: 0.5rem;
-    color: #ccc;
-  }
-  
-  p.text-center {
-    text-align: center;
-    margin-top: 1rem;
-  }
-  
-  a.text-blue-500 {
-    color: #3498db;
-  }
-  
-  a.text-blue-500:hover {
-    color: #2c6ead;
-  }
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+}
 
-  /* account.css */
+body.bg-gray-100 {
+  background-color: #f7f7f7;
+}
 
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-  }
-  
-  main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-  }
-  
-  main h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  main h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  main h3 {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-  }
-  
-  main form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-    border: 1px solid #ccc;
-    border-radius: 0.5rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  main form fieldset {
-    border: none;
-    padding: 0;
-  }
-  
-  main form legend {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-  }
-  
-  main form div {
-    margin-bottom: 1rem;
-  }
-  
-  main form label {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
-  
-  main form input[type="text"],
-  main form input[type="email"],
-  main form input[type="password"] {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 0.5rem;
-    width: 100%;
-  }
-  
-  main form input[type="submit"] {
-    background-color: #333;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-  }
-  
-  main form input[type="submit"]:hover {
-    background-color: #444;
-  }
-  
-  main img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 1rem;
-  }
+body.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
-  /* schedule.css */
+body.items-center {
+  align-items: center;
+}
+
+body.h-screen {
+  height: 100vh;
+}
+
+div.bg-white {
+  background-color: #fff;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2.text-2xl {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+label.block {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+label.text-sm {
+  font-size: 1.2rem;
+}
+
+label.text-gray-700 {
+  color: #333;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  width: 100%;
+}
+
+input[type="submit"] {
+  background-color: #333;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #444;
+}
+
+i.fas {
+  font-size: 1.5rem;
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  color: #ccc;
+}
+
+p.text-center {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+a.text-blue-500 {
+  color: #3498db;
+}
+
+a.text-blue-500:hover {
+  color: #2c6ead;
+}
+
+/* account.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+main h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+main h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+main h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+main form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+main form fieldset {
+  border: none;
+  padding: 0;
+}
+
+main form legend {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+main form div {
+  margin-bottom: 1rem;
+}
+
+main form label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+main form input[type="text"],
+main form input[type="email"],
+main form input[type="password"] {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  width: 100%;
+}
+
+main form input[type="submit"] {
+  background-color: #333;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+main form input[type="submit"]:hover {
+  background-color: #444;
+}
+
+main img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+/* schedule.css */
 
 /* General Styles */
 body {
@@ -343,4 +343,16 @@ form legend {
 .btn-primary:hover {
   background: #002244; /* Darker Blue */
 }
-
+/* Delete Button */
+#delete-form {
+  display: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  cursor: pointer;
+}
+.btn-delete {
+  background-color: #990000;
+  color: white;
+}

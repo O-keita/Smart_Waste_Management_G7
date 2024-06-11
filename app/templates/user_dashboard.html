@@ -2,32 +2,43 @@
 <h2>{{current_user.first_name}}'s Dashboard</h2>
 <a href="{{url_for('schedule')}}"><button>Add Schedule</button></a>
 
-<div class="user-info">
-  <h3>User Info</h3>
-  <span>Name: {{current_user.first_name}} {{current_user.last_name}}</span>
-  <span>location: {{current_user.location}}</span>
-  <span>Phone Number: {{current_user.phone_number}}</span>
-  <span>Email: {{current_user.email}}</span>
-  <span>Addres:{{current_user.address}}</span>
-  <span>House Number:{{current_user.house_number}}</span>
-</div>
+<div class="user">
+  <div class="user-info">
+    <h3>User Info</h3>
+    <span
+      ><img
+        src="{{url_for('static', filename='profile_pics/' + current_user.image_file)}}"
+        alt=""
+    /></span>
+    <span>Name: {{current_user.first_name}} {{current_user.last_name}}</span>
+    <span>location: {{current_user.location}}</span>
+    <span>Phone Number: {{current_user.phone_number}}</span>
+    <span>Email: {{current_user.email}}</span>
+    <span>Addres:{{current_user.address}}</span>
+    <span>House Number:{{current_user.house_number}}</span>
+  </div>
 
-<div class="schedules">
-  <h3>User Schedules</h3>
+  <div class="schedules">
+    <h3>User Schedules</h3>
 
-  <div class="recycle">
-    {% if user_schedule %} {%for schedule in user_schedule%}
-    <span>Date {{schedule.date.strftime('%A, %B %d, %Y')}}</span>
-    <span>Type {{schedule.type}}</span>
+    <div class="recycle">
+      {% if user_schedule %} {%for schedule in user_schedule%}
+      <span>Date {{schedule.date.strftime('%A, %B %d, %Y')}}</span>
+      <span>Type {{schedule.type}}</span>
 
-    <a class="btn-manage" href="{{url_for('user_dashboard')}}"
-      ><button>Manage Schedule</button></a
-    >
+      <a
+        class="btn-manage"
+        href="{{url_for('manage_schedule', schedule_id=schedule.id)}}"
+        ><button>Manage Schedule</button></a
+      >
 
-    <p>days until collection: {{ (schedule.date - datetime.now()).days + 1}}</p>
-    {% endfor %} {% else %}
-    <p>No Schedule for {{current_user.first_name}}</p>
-    {% endif %}
+      <p>
+        days until collection: {{ (schedule.date - datetime.now()).days + 1}}
+      </p>
+      {% endfor %} {% else %}
+      <p>No Schedule for {{current_user.first_name}}</p>
+      {% endif %}
+    </div>
   </div>
 </div>
 {% endblock %}

@@ -2,7 +2,7 @@ import os
 import secrets
 from datetime import datetime
 from PIL import Image
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, abort
 from app.forms import Registration, LoginForm, Recycling, Scheduling_form, updateAccount
 from app.models import User,Scheduling
 from app import app, bcrypt, db
@@ -26,7 +26,7 @@ def login():
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
             flash('Login Successful', 'success')
-            return redirect(url_for('home'))
+            return redirect(url_for('user_dashboard'))
         flash('Succefully Logged In', 'success')
         
 
@@ -142,8 +142,55 @@ def user_dashboard():
 
 
     return render_template('user_dashboard.html', user_schedule=user_schedule, datetime=datetime)
-@app.route('/admin_dashboard', methods=['GET', 'POST'])
 
+@app.route('/user_dashboard/<int:schedule_id>', methods=['GET', 'POST'])
+@login_required
+def manage_schedule(schedule_id):
+
+    schedule = Scheduling.query.get_or_404(schedule_id)
+
+    return render_template('manage_schedule.html', user_schedule=schedule)
+
+@app.route('/user_dashboard/<int:schedule_id>/update', methods=['GET', 'POST'])
+@login_required
+def update_schedule(schedule_id):
+
+    schedule = Scheduling.query.get_or_404(schedule_id)
+    form = Scheduling_form()
+
+    if schedule.user_id != current_user.id:
+        abort(403)
+
+    if form.validate_on_submit():
+        schedule.date = form.date.data
+        schedule.type = form.type.data
+        db.session.commit()
+        flash('Schedule Updated', 'success')
+        return redirect(url_for('user_dashboard'))
+    elif request.method == 'GET':
+        form.date.data = schedule.date
+        form.type.data = schedule.type
+
+
+        
+
+    return render_template('update_schedule.html', user_schedule=schedule, form=form)
+
+
+@app.route('/user_dashboard/<int:schedule_id>/delete', methods=['POST']) 
+@login_required
+def delete_schedule(schedule_id):
+    schedule = Scheduling.query.get_or_404(schedule_id)
+    if schedule.user_id != current_user.id:
+        abort(403)
+    db.session.delete(schedule)
+    db.session.commit()
+    flash('Schedule Deleted', 'success')
+    return redirect(url_for('user_dashboard'))
+
+
+
+@app.route('/admin_dashboard', methods=['GET', 'POST'])
 @login_required
 def admin_dashboard():
 
