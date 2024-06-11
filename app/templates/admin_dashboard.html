@@ -1,4 +1,200 @@
-{% extends 'base.html'%} {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<h1>Admin Dashboard</h1>
-{% endblock %}
+    <!-- Boxicons -->
+    <link
+      href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!-- My CSS -->
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/admin.css')}}"
+    />
+
+    <title>AdminHub</title>
+  </head>
+  <body>
+    <!-- SIDEBAR -->
+    <section id="sidebar">
+      <a href="#" class="brand">
+        <i class="bx bxs-smile"></i>
+        <span class="text"
+          >{{current_user.first_name}} {{current_user.last_name}}</span
+        >
+      </a>
+      <ul class="side-menu top">
+        <li class="active">
+          <a href="{{url_for('admin_dashboard')}}">
+            <i class="bx bxs-dashboard"></i>
+            <span class="text">Dashboard</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="#">
+            <i class="bx bxs-group"></i>
+            <span class="text">Users</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="#">
+            <i class="bx bx-calendar"></i>
+            <span class="text">Schedules</span>
+          </a>
+        </li>
+      </ul>
+      <ul class="side-menu">
+        <li>
+          <a href="#">
+            <i class="bx bxs-cog"></i>
+            <span class="text">Settings</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="logout">
+            <i class="bx bxs-log-out-circle"></i>
+            <span class="text">Logout</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+    <!-- SIDEBAR -->
+
+    <!-- CONTENT -->
+    <section id="content">
+      <!-- NAVBAR -->
+      <nav>
+        <i class="bx bx-menu"></i>
+
+        <form action="#">
+          <div class="form-input">
+            <input type="search" placeholder="Search..." />
+            <button type="submit" class="search-btn">
+              <i class="bx bx-search"></i>
+            </button>
+          </div>
+        </form>
+        <input type="checkbox" id="switch-mode" hidden />
+        <label for="switch-mode" class="switch-mode"></label>
+        <a href="{{url_for('account')}}" class="profile">
+          <img
+            src="{{url_for('static', filename='profile_pics/' + current_user.image_file)}}"
+            alt=""
+          />
+        </a>
+        <a href="#" class="profile"> </a>
+      </nav>
+      <!-- NAVBAR -->
+
+      <!-- MAIN -->
+      <main>
+        <div class="head-title">
+          <div class="left">
+            <h1>Dashboard</h1>
+            <ul class="breadcrumb">
+              <li>
+                <a href="{{url_for('admin_dashboard')}}">Dashboard</a>
+              </li>
+              <li><i class="bx bx-chevron-right"></i></li>
+              <li>
+                <a class="active" href="{{url_for('home')}}">Home</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <ul class="box-info">
+          <li>
+            <i class="bx bxs-group"></i>
+            <span class="text">
+              <h3>{{users|length}}</h3>
+              <p>Total Users</p>
+            </span>
+          </li>
+          <li>
+            <i class="bx bxs-calendar"></i>
+            <span class="text">
+              <h3>{{user_schedule|length}}</h3>
+              <p>Total Schedules</p>
+            </span>
+          </li>
+          <li>
+            <i class="bx bx-check"></i>
+            <span class="text">
+              <h3>{{collected}}</h3>
+              <p>Schedules Collected</p>
+            </span>
+          </li>
+        </ul>
+
+        <div class="table-data">
+          <div class="order">
+            <div class="head">
+              <h3>This Week's Waste Collection Schedules</h3>
+              <i class="bx bx-filter"></i>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>User</th>
+                  <th>Date Order</th>
+                  <th>location</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for schedule in user_schedule %} {% for user in users %} {%
+                set days_difference = (schedule.date - datetime.now()).days %}
+                {% if days_difference < 7 and days_difference >= 0 %}
+                <tr>
+                  <td>
+                    <img
+                      src="{{ url_for('static', filename='profile_pics/' + user.image_file) }}"
+                    />
+                    <p>{{ user.first_name }} {{ user.last_name }}</p>
+                  </td>
+                  <td>{{ schedule.date.strftime('%A, %B %d') }}</td>
+
+                  <td>{{ user.location }}</td>
+                  <td>
+                    <span
+                      class="status {% if schedule.collected %}completed{% else %}pending{% endif %}"
+                    >
+                      {% if schedule.collected %}Collected{% else %}Pending{%
+                      endif %}
+                    </span>
+                  </td>
+                </tr>
+                {% endif %} {% endfor %} {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="todo">
+            <div class="head">
+              <h3>Users location</h3>
+            </div>
+            <ul class="todo-list">
+              {% for location in unique_location %}
+              <li>
+                <span
+                  ><i class="bx bxs-map" style="color: green"></i>
+                  {{location.location}}</span
+                >
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </main>
+      <!-- MAIN -->
+    </section>
+    <!-- CONTENT -->
+
+    <script src="{{url_for('static', filename='js/script.js')}}"></script>
+  </body>
+</html>

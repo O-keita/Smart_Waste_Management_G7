@@ -1,6 +1,6 @@
-from app import db, login_manager, admin
+from app import db, login_manager
 from flask_login import UserMixin
-from flask_admin.contrib.sqla import ModelView
+
 
 
 @login_manager.user_loader
@@ -21,6 +21,7 @@ class User(db.Model, UserMixin):
     phone_number = db.Column(db.String(50), nullable=False)
     password = db.Column(db.String(150), nullable=False)
     schedule = db.relationship('Scheduling', backref='customer', lazy=True)
+    is_admin = db.Column(db.Boolean, nullable=False, default=False)
 
 
     def __repr__(self):
@@ -30,10 +31,10 @@ class Scheduling(db.Model):
     date = db.Column(db.DateTime, nullable=False)
     type = db.Column(db.String(50), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    collected = db.Column(db.Boolean, nullable=False, default=False)
 
 
     def __repr__(self):
         return f'Scheduling: {self.date}, Type: {self.type}'
     
-admin.add_view(ModelView(User, db.session))
-admin.add_view(ModelView(Scheduling, db.session))
+

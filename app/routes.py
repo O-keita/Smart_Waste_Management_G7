@@ -194,7 +194,18 @@ def delete_schedule(schedule_id):
 @login_required
 def admin_dashboard():
 
-    return render_template('admin_dashboard.html')
+    if not current_user.is_admin:
+        abort(403)
+        flash('Access Denied', 'danger')
+
+    users = User.query.all()
+    user_schedule= Scheduling.query.all()
+    number_of_users = User.query.count()
+    unique_location = User.query.distinct(User.location).all()
+
+    collected = Scheduling.query.filter_by(collected=True).count()
+
+    return render_template('admin_dashboard.html', users=users, user_schedule=user_schedule, number_of_users=number_of_users, collected=collected, datetime=datetime, unique_location=unique_location)     
 
 
 
