@@ -1,7 +1,23 @@
 /* main.css */
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap");
+:root {
+  --poppins: "Poppins", sans-serif;
+  --lato: "Lato", sans-serif;
 
+  --light: #f9f9f9;
+  --green: rgb(8, 221, 8);
+  --light-blue: #cfe8ff;
+  --grey: #eee;
+  --dark-grey: #aaaaaa;
+  --dark: #342e37;
+  --red: #db504a;
+  --yellow: #ffce26;
+  --light-yellow: #fff2c6;
+  --orange: #fd7238;
+  --light-orange: #ffe0d3;
+}
 body {
-  font-family: Arial, sans-serif;
+  font-family: var(--lato);
   background-color: #f38686;
   margin: 0;
   padding: 0;
@@ -355,4 +371,83 @@ form legend {
 .btn-delete {
   background-color: #990000;
   color: white;
+}
+
+/* User Dashboard */
+.user_dashboard {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  flex-direction: column;
+}
+
+.user_dashboard h2 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.user-title {
+  padding: 2%;
+  font-size: 2rem;
+  font-weight: bold;
+
+  text-align: center;
+}
+
+.user-title a button {
+  padding: 10px 20px;
+  background-color: var(--green);
+  color: white;
+  font-size: 17px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: var(--poppins);
+  text-align: center;
+}
+
+.user-title a button i {
+  margin-right: 1rem;
+  font-size: 20px;
+}
+
+.user {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  margin: 0 1rem;
+  padding: 1rem;
+  height: 60vh;
+  border-radius: 5px;
+  overflow: scroll;
+}
+
+.user-info span {
+  padding: 2%;
+  margin: 2%;
+  font-family: var(--lato);
+}
+
+.schedules {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+  margin: 0 1rem;
+  padding: 1rem;
+  height: 60vh;
+  overflow: scroll;
+  border-radius: 5px;
+}
+
+.user-info img {
+  border: 3px solid var(--green);
 }

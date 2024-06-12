@@ -1,6 +1,11 @@
-{% extends 'base.html'%}  {% block content %}
-  <h2>{{current_user.first_name}}'s Dashboard</h2>
-  <a href="{{url_for('schedule')}}"><button>Add Schedule</button></a>
+{% extends 'base.html'%} {% block content %}
+<div class="user_dashboard">
+  <div class="user-title">
+    <h2>{{current_user.first_name}}'s Dashboard</h2>
+    <a href="{{url_for('schedule')}}"
+      ><button><i class="bx bx-plus-circle"></i>Add Schedule</button></a
+    >
+  </div>
 
   <div class="user">
     <div class="user-info">
@@ -41,5 +46,5 @@
       </div>
     </div>
   </div>
-  {% endblock %}
-</ul>
+</div>
+{% endblock %}
