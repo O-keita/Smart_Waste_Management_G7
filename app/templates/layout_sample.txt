@@ -2,3 +2,45 @@
 
 
 {% endblock %}
+
+    <header class="main-header">
+      <h3 class="header-text">
+        The links Below are the nav-links to different pages
+      </h3>
+      <ul class="nav-list">
+        <!-- In flask url_for is use to connect different pages -->
+        {% if current_user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('recycle')}}">Recycle</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('schedule')}}">Schedule</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('account')}}">Account</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('user_dashboard')}}"
+            >User Dashboard</a
+          >
+        </li>
+        {% if current_user.is_admin %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('admin_dashboard')}}"
+            >Admin Dashboard</a
+          >
+        </li>
+        {% endif %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('login')}}">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('register')}}">Register</a>
+        </li>
+        {% endif %}
+      </ul>
+    </header>
