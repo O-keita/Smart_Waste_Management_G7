@@ -1,6 +1,6 @@
-from app import db, login_manager
-from flask_login import UserMixin
-
+from app import db, login_manager, admin
+from flask_login import UserMixin, current_user
+from flask_admin.contrib.sqla import ModelView
 
 
 @login_manager.user_loader
@@ -34,7 +34,24 @@ class Scheduling(db.Model):
     collected = db.Column(db.Boolean, nullable=False, default=False)
 
 
+
     def __repr__(self):
         return f'Scheduling: {self.date}, Type: {self.type}'
     
+class controller(ModelView):
+
+    column_list = ['first_name', 'last_name', 'email', 'phone_number', 'is_admin']
+
+    def is_accessible(self):
+        return current_user.is_admin   
+
+    def not_auth(self):
+        return not current_user.is_authenticated 
+
+
+
+admin.add_view(controller(User, db.session))
+
+
+
 

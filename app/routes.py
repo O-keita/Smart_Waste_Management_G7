@@ -189,7 +189,15 @@ def delete_schedule(schedule_id):
     flash('Schedule Deleted', 'success')
     return redirect(url_for('user_dashboard'))
 
+@app.route('/admin/user/', methods=['GET', 'POST'])
+@login_required
+def admin():
 
+    if not current_user.is_admin:
+        abort(403)
+        flash('Access Denied', 'danger')
+
+    return render_template('admin/index.html')
 
 @app.route('/admin_dashboard', methods=['GET', 'POST'])
 @login_required
