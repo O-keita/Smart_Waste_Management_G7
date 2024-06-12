@@ -1,96 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <title>Smart Waste Management</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #ffffff; /* white background */
-            color: #333333; /* black text color */
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #009933; /* green header */
-            color: #ffffff; /* white text color */
-            padding: 20px;
-            text-align: center;
-        }
-        .logo {
-            width: 50px; /* adjust size as needed */
-            height: auto;
-            margin-right: 10px;
-        }
-        .main-div {
-            padding: 20px;
-            text-align: center;
-            font-style: italic; /* italic font */
-        }
-        .btn-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .btn {
-            background-color: #009933; /* green button */
-            color: #ffffff; /* white text color */
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-right: 10px;
-            text-decoration: none;
-        }
-        .btn:hover {
-            background-color: #007a29; /* darker green on hover */
-        }
-        footer {
-            background-color: #ffffff; /* white footer */
-            color: #333333; /* black text color */
-            text-align: center;
-            padding: 20px;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #ffffff; /* white background */
+        color: #333333; /* black text color */
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        background-color: #009933; /* green header */
+        color: #ffffff; /* white text color */
+        padding: 20px;
+        text-align: center;
+      }
+      .logo {
+        width: 50px; /* adjust size as needed */
+        height: auto;
+        margin-right: 10px;
+      }
+      .main-div {
+        padding: 20px;
+        text-align: center;
+        font-style: italic; /* italic font */
+      }
+      .btn-container {
+        text-align: center;
+        margin-top: 20px;
+      }
+      .btn {
+        background-color: #009933; /* green button */
+        color: #ffffff; /* white text color */
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-right: 10px;
+        text-decoration: none;
+      }
+      .btn:hover {
+        background-color: #007a29; /* darker green on hover */
+      }
+      footer {
+        background-color: #ffffff; /* white footer */
+        color: #333333; /* black text color */
+        text-align: center;
+        padding: 20px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div class="flex items-center">
-            <img src="git clean -fd
-            " alt="Smart Waste Management" class="logo">
-            <h1 class="text-xl font-bold">Smart Waste Management</h1>
-        </div>
+      <div class="flex items-center">
+        <img
+          src="git clean -fd
+            "
+          alt="Smart Waste Management"
+          class="logo"
+        />
+        <h1 class="text-xl font-bold">Smart Waste Management</h1>
+      </div>
     </header>
     <main>
-        <div class="main-div">
-            <h2 class="text-3xl font-semibold mb-4">Welcome to Smart Waste Management</h2>
-            <p class="text-lg mb-4">
-                Smart Waste Management is a revolutionary project dedicated to addressing pressing environmental concerns
-                by implementing cutting-edge solutions in waste management. Our aim is to create a comprehensive system that
-                not only facilitates efficient waste collection but also maximizes recycling efforts and optimizes resource
-                management through the utilization of intelligent technologies.
-            </p>
-            <p class="text-lg mb-4">
-                By harnessing the power of data analytics, IoT devices, and machine learning algorithms, we strive to
-                revolutionize the way waste is managed in communities and cities worldwide. Our system is designed to
-                identify patterns, optimize collection routes, minimize waste generation, and encourage sustainable
-                practices among individuals and businesses.
-            </p>
-            <p class="text-lg mb-4">
-                Through Smart Waste Management, we envision a cleaner, greener future where waste is seen as a valuable
-                resource rather than a burden on the environment.
-            </p>
-            <p class="text-lg mb-4">Transforming Waste, Empowering Communities</p>
-        </div>
-        <div class="btn-container">
-            <a href="/register" class="btn">Register</a>
-            <a href="/login" class="btn">Login</a>
-        </div>
+      <div class="main-div">
+        <h2 class="text-3xl font-semibold mb-4">
+          Welcome to Smart Waste Management
+        </h2>
+        <p class="text-lg mb-4">
+          Smart Waste Management is a revolutionary project dedicated to
+          addressing pressing environmental concerns by implementing
+          cutting-edge solutions in waste management. Our aim is to create a
+          comprehensive system that not only facilitates efficient waste
+          collection but also maximizes recycling efforts and optimizes resource
+          management through the utilization of intelligent technologies.
+        </p>
+        <p class="text-lg mb-4">
+          By harnessing the power of data analytics, IoT devices, and machine
+          learning algorithms, we strive to revolutionize the way waste is
+          managed in communities and cities worldwide. Our system is designed to
+          identify patterns, optimize collection routes, minimize waste
+          generation, and encourage sustainable practices among individuals and
+          businesses.
+        </p>
+        <p class="text-lg mb-4">
+          Through Smart Waste Management, we envision a cleaner, greener future
+          where waste is seen as a valuable resource rather than a burden on the
+          environment.
+        </p>
+        <p class="text-lg mb-4">Transforming Waste, Empowering Communities</p>
+      </div>
+      <div class="btn-container">
+        <a href="{{ url_for('register') }}" class="btn">Register</a>
+        <a href="{{ url_for('login') }}" class="btn">Login</a>
+      </div>
     </main>
     <footer>
-        <p>&copy; 2024 Smart Waste Management. All rights reserved.</p>
+      <p>&copy; 2024 Smart Waste Management. All rights reserved.</p>
     </footer>
-</body>
+  </body>
 </html>
-
