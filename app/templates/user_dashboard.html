@@ -50,6 +50,7 @@
 
       <div class="recycle">
         {% if user_schedule %} {% for schedule in user_schedule %}
+        {% if schedule.collected == False %}
         <div class="recycle-item">
           <div class="recycle-info">
             <span>
@@ -58,30 +59,36 @@
             </span>
             <p>
               {% set days_difference = (schedule.date - datetime.now()).days %}
-              {% if days_difference <= 7 and days_difference >= 2 %}
+              {% if days_difference +1 <= 7 and days_difference +1 >= 2 %}
               <span
               ><i class="bx bx-timer"></i
               ><span style="color: red"
                 >{{ days_difference }} Days until waste collection</span
               ></span
             >
-              {% elif days_difference == 1 %}
-              <span
-              ><i class="bx bx-timer"></i
-              ><span style="color: red"
-                >{{ days_difference }} Day until waste collection</span
-              ></span
-            >
-              {% elif days_difference == 0 %}
-              <span style="color: gray">
-                <i class="bx bx-timer"></i><span>Your schedule is today</span>
+
+  
+
+              {% elif days_difference == -1 %}
+              <span style="color: blue; font-weight: bolder">
+                <i class="bx bx-timer"></i><span>Your schedule is today 🎊 🎊 </span>
               </span>
               {% elif days_difference < 0 %}
               <span
                 ><i class="bx bx-timer"></i
                 ><span style="color: red">
-                  Your schedule was {{ days_difference | abs }} days ago</span
+
+                
+                  Schedule has passed 😥</span
                 >
+
+                {% elif days_difference == 0 %}
+              <span style="color: red; font-weight: bolder;"
+                ><i class="bx bx-timer"></i
+                ><span
+                  >Tomorrow Is Your Waste Collection Schedule 🛻!</span
+                ></span
+              >
               
               {% else %}
               <span
@@ -102,7 +109,7 @@
             </button>
           </a>
         </div>
-        {% endfor %} {% else %}
+        {% endif %}{% endfor %}  {% else %}
         <p>No schedule for {{ current_user.first_name }}</p>
         {% endif %}
       </div>

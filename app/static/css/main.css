@@ -314,6 +314,7 @@ form legend {
 }
 .btn-update,
 .btn-delete,
+.btn-complete,
 .btn-primary {
   color: #fff;
   padding: 10px 20px;
@@ -330,6 +331,10 @@ form legend {
 
 .btn-update {
   background: var(--green); /* Dark Blue */
+}
+
+.btn-complete {
+  background-color: rgb(3, 3, 235);
 }
 .btn-delete {
   background: var(--red); /* Dark Blue */
@@ -552,6 +557,41 @@ form legend {
 }
 #menu {
   cursor: pointer;
+}
+
+/* Manage */
+.manage {
+  margin-top: 5%;
+  padding: 3%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 50%;
+}
+
+.manage .task {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+
+  margin: 3%;
+}
+
+.manage .task .highlight {
+  font-weight: bold;
+  font-family: var(--poppins);
+}
+
+.manage .controls {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  margin: 2%;
+  flex-wrap: wrap;
 }
 
 @media screen and (max-width: 768px) {

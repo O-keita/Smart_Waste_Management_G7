@@ -188,7 +188,16 @@ def delete_schedule(schedule_id):
     db.session.commit()
     flash('Schedule Deleted', 'success')
     return redirect(url_for('user_dashboard'))
-
+@app.route('/user_dashboard/<int:schedule_id>/collect', methods=['POST', 'GET'])
+@login_required
+def collect_schedule(schedule_id):
+    schedule = Scheduling.query.get_or_404(schedule_id)
+    if schedule.user_id != current_user.id:
+        abort(403)
+    schedule.collected = True
+    db.session.commit()
+    flash('Schedule Collected', 'success')
+    return redirect(url_for('user_dashboard'))
 @app.route('/admin/user/', methods=['GET', 'POST'])
 @login_required
 def admin():

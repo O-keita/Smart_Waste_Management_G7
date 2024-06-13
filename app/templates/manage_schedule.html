@@ -4,14 +4,23 @@
   <h1>Manage Schedule</h1>
   <div class="task">
     <span
-      ><span class="highlight">Date: </span>{{ user_schedule.date.strftime('%A,
-      %B %d, %Y') }}</span
+      ><span class="highlight">Date For Your Schedule: </span>{{
+      user_schedule.date.strftime('%A, %B %d, %Y') }}</span
     >
-    <span><span class="highlight">Type:</span> {{ user_schedule.type }}</span>
+    <span
+      ><span class="highlight">Type of Waste:</span> {{ user_schedule.type
+      }}</span
+    >
   </div>
   <div class="controls">
     <a href="{{ url_for('update_schedule', schedule_id=user_schedule.id) }}">
       <button class="btn-update"><i class="bx bxs-edit"></i>Update</button>
+    </a>
+
+    <a href="{{ url_for('collect_schedule', schedule_id=user_schedule.id) }}">
+      <button class="btn-complete">
+        <i class="bx bxs-check-circle"></i>Mark Collected
+      </button>
     </a>
     <form
       id="delete-form"
