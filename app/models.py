@@ -42,11 +42,11 @@ class controller(ModelView):
 
     column_list = ['first_name', 'last_name', 'email', 'phone_number', 'is_admin']
 
-    def is_accessible(self):
-        return current_user.is_admin   
+    # def is_accessible(self):
+    #     return current_user.is_admin   
 
-    def not_auth(self):
-        return not current_user.is_authenticated 
+    # def not_auth(self):
+    #     return not current_user.is_authenticated 
 
 
 
