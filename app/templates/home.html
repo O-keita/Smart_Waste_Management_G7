@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Smart Waste Management</title>
+    <link
+      href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
+      rel="stylesheet"
+    />
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -91,10 +95,19 @@
 
       <div class="btn-container">
         {% if current_user.is_authenticated %}
-        <a href="{{ url_for('logout') }}" class="btn">Logout</a>
+        <a href="{{ url_for('logout') }}" class="btn">
+          <i class="bx bxs-log-out"></i>Logout</a
+        >
+        <a href="{{ url_for('user_dashboard') }}" class="btn">
+          <i class="bx bxs-dashboard"></i>My Dashboard</a
+        >
         {% else %}
-        <a href="{{ url_for('register') }}" class="btn">Register</a>
-        <a href="{{ url_for('login') }}" class="btn">Login</a>
+        <a href="{{ url_for('register') }}" class="btn">
+          <i class="bx bxs-user-plus"></i>Register</a
+        >
+        <a href="{{ url_for('login') }}" class="btn"
+          ><i class="bx bxs-user"></i>Login</a
+        >
         {% endif %}
       </div>
     </main>

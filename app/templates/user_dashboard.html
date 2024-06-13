@@ -1,50 +1,113 @@
-{% extends 'base.html'%} {% block content %}
+{% extends 'base.html' %} {% block content %}
 <div class="user_dashboard">
-  <div class="user-title">
-    <h2>{{current_user.first_name}}'s Dashboard</h2>
-    <a href="{{url_for('schedule')}}"
-      ><button><i class="bx bx-plus-circle"></i>Add Schedule</button></a
-    >
+  <div class="user-sidebar" id="user-sidebar">
+    <span class="user-title">
+      <img
+        src="{{ url_for('static', filename='profile_pics/' + current_user.image_file) }}"
+        alt=""
+      />
+      <span class="user-name">Hey, {{ current_user.first_name }}!</span>
+
+      <i class="bx bx-menu" id="menu"></i>
+    </span>
+
+    <div class="user-info">
+      <span
+        ><i class="bx bxs-map"></i><span>Location</span>: {{
+        current_user.location }}</span
+      >
+      <span
+        ><i class="bx bxs-phone"></i><span>Phone Number</span>: {{
+        current_user.phone_number }}</span
+      >
+      <span
+        ><i class="bx bxs-envelope"></i><span>Email</span>: {{
+        current_user.email }}</span
+      >
+      <span
+        ><i class="bx bxs-map"></i><span>Address</span>: {{ current_user.address
+        }}</span
+      >
+      <span
+        ><i class="bx bxs-map"></i><span>House Number</span>: {{
+        current_user.house_number }}</span
+      >
+    </div>
   </div>
 
   <div class="user">
-    <div class="user-info">
-      <h3>User Info</h3>
-      <span
-        ><img
-          src="{{url_for('static', filename='profile_pics/' + current_user.image_file)}}"
-          alt=""
-      /></span>
-      <span>Name: {{current_user.first_name}} {{current_user.last_name}}</span>
-      <span>location: {{current_user.location}}</span>
-      <span>Phone Number: {{current_user.phone_number}}</span>
-      <span>Email: {{current_user.email}}</span>
-      <span>Addres:{{current_user.address}}</span>
-      <span>House Number:{{current_user.house_number}}</span>
+    <div class="user-control">
+      <h2>{{ current_user.first_name }}'s Dashboard</h2>
+      <a href="{{ url_for('schedule') }}">
+        <button class="btn-primary">
+          <i class="bx bxs-plus-circle"></i>Add Schedule
+        </button>
+      </a>
     </div>
 
     <div class="schedules">
-      <h3>User Schedules</h3>
+      <h3>Upcoming Schedules</h3>
 
       <div class="recycle">
-        {% if user_schedule %} {%for schedule in user_schedule%}
-        <span>Date {{schedule.date.strftime('%A, %B %d, %Y')}}</span>
-        <span>Type {{schedule.type}}</span>
-
-        <a
-          class="btn-manage"
-          href="{{url_for('manage_schedule', schedule_id=schedule.id)}}"
-          ><button>Manage Schedule</button></a
-        >
-
-        <p>
-          days until collection: {{ (schedule.date - datetime.now()).days + 1}}
-        </p>
+        {% if user_schedule %} {% for schedule in user_schedule %}
+        <div class="recycle-item">
+          <div class="recycle-info">
+            <span>
+              <span>Date: {{ schedule.date.strftime('%A, %B %d, %Y') }}</span>
+              <span>Type: {{ schedule.type }}</span>
+            </span>
+            <p>
+              {% set days_difference = (schedule.date - datetime.now()).days %}
+              {% if days_difference <= 7 and days_difference >= 2 %}
+              <span
+              ><i class="bx bx-timer"></i
+              ><span style="color: red"
+                >{{ days_difference }} Days until waste collection</span
+              ></span
+            >
+              {% elif days_difference == 1 %}
+              <span
+              ><i class="bx bx-timer"></i
+              ><span style="color: red"
+                >{{ days_difference }} Day until waste collection</span
+              ></span
+            >
+              {% elif days_difference == 0 %}
+              <span style="color: gray">
+                <i class="bx bx-timer"></i><span>Your schedule is today</span>
+              </span>
+              {% elif days_difference < 0 %}
+              <span
+                ><i class="bx bx-timer"></i
+                ><span style="color: red">
+                  Your schedule was {{ days_difference | abs }} days ago</span
+                >
+              
+              {% else %}
+              <span
+                ><i class="bx bx-timer"></i
+                ><span
+                  >{{ days_difference }} days until waste collection</span
+                ></span
+              >
+              {% endif %}
+            </p>
+          </div>
+          <a
+            class="btn-manage"
+            href="{{ url_for('manage_schedule', schedule_id=schedule.id) }}"
+          >
+            <button class="btn-update">
+              <i class="bx bxs-edit"></i>Manage Schedule
+            </button>
+          </a>
+        </div>
         {% endfor %} {% else %}
-        <p>No Schedule for {{current_user.first_name}}</p>
+        <p>No schedule for {{ current_user.first_name }}</p>
         {% endif %}
       </div>
     </div>
   </div>
 </div>
+
 {% endblock %}
