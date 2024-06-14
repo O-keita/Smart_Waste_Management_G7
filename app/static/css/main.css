@@ -22,7 +22,9 @@ body {
   margin: 0;
   padding: 0;
 }
-
+.alert-danger {
+  color: red;
+}
 /* header */
 
 header {

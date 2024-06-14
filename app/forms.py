@@ -7,7 +7,7 @@ from app.models import User
 from flask_login import current_user
 class Registration(FlaskForm):
 
-    ID =  StringField('ID', validators=[DataRequired(), Length(min=2, max=20)], render_kw={"class":"mt-1 block w-full p-4 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none" })
+    ID =  StringField('ID', validators=[Length(min=1, max=20)], render_kw={"class":"mt-1 block w-full p-4 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none" })
     first_name = StringField('First Name',
                             validators=[DataRequired(), Length(min=2, max=20)], render_kw={"class":"mt-1 block w-full p-4 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none" })
     middle_name =  StringField('Middle Name', render_kw={"class":"mt-1 block w-full p-4 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none" })
@@ -23,12 +23,12 @@ class Registration(FlaskForm):
                              validators=[DataRequired(), Length(min=2, max=20)], render_kw={"class":"mt-1 block w-full p-4 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none" })
     location =  StringField('Location',
                              validators=[DataRequired(), Length(min=2, max=20)], render_kw={"class":"mt-1 block w-full p-4 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none" })
-    phone_number =  IntegerField('Phone Number',
+    phone_number =  StringField('Phone Number',
                              validators=[DataRequired()], render_kw={"class":"mt-1 block w-full p-4 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none" })
 
     password = PasswordField('Password',
                              validators=[DataRequired()], render_kw={'class': 'mt-1 block w-full p-4 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none'})
-    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')], render_kw={'class': 'mt-1 block w-full p-4 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none'})
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired()], render_kw={'class': 'mt-1 block w-full p-4 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none'})
 
 
 
@@ -93,4 +93,6 @@ class updateAccount(FlaskForm):
 
             if user:
                 raise ValidationError('Email already in use.')
-      
+    def validate_password(self, password, confirm_password):
+        if password.data != confirm_password.data:   
+            raise ValidationError('Password not matched.')

@@ -2,11 +2,12 @@ import os
 import secrets
 from datetime import datetime
 from PIL import Image
-from flask import render_template, flash, redirect, url_for, request, abort
+from flask import render_template, flash, redirect, url_for, request, abort, jsonify
 from app.forms import Registration, LoginForm, Recycling, Scheduling_form, updateAccount
 from app.models import User,Scheduling
 from app import app, bcrypt, db
 from flask_login import login_user, current_user, logout_user, login_required
+
 
 
 @app.route('/home', methods=['GET', 'POST'])
@@ -18,6 +19,13 @@ def home():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    """
+        Login Page
+        checks if user is already logged in
+        if user is logged in, redirects to dashboard
+        else:{{form.email}}
+            Login Form
+    """
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = LoginForm()
@@ -28,7 +36,12 @@ def login():
             login_user(user, remember=form.remember.data)
             flash('Login Successful', 'success')
             return redirect(url_for('user_dashboard'))
-        flash('Succefully Logged In', 'success')
+        
+
+        flash('Invalid Email or Password', 'failed')
+
+
+    
         
 
     return render_template('login.html', form=form)
@@ -36,6 +49,13 @@ def login():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    """
+        Registration Page
+        checks if user is already logged in
+        if user is logged in, redirects to dashboard
+        else:
+            Registration Form
+    """
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = Registration()
@@ -53,8 +73,13 @@ def register():
         db.session.add(user)
         db.session.commit()
         flash(f'Account Created for {form.first_name.data}', 'success')
-
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
+    else:
+        for field, errors in form.errors.items():
+            for error in errors:
+                flash(f"{getattr(form, field).label.text} - {error}", 'danger')
+    
+    flash("Registration Failed, Please check your email", 'failed')
 
     return render_template('register.html', form=form)
 
@@ -62,6 +87,12 @@ def register():
 @app.route('/recycle', methods=['GET', 'POST'])
 @login_required
 def recycle():
+    """
+        Recycle Page
+        checks if user is already logged in
+        if user is logged in, redirects to dashboard
+        else:
+            Recycle Form"""
 
     form = Recycling()
 
@@ -73,6 +104,15 @@ def recycle():
 @app.route('/schedule', methods=['GET', 'POST'])
 @login_required
 def schedule():
+
+    """
+        Schedule Page
+        checks if user is already logged in
+        if user is logged in, redirects to dashboard
+        else:
+            Schedule Form
+            
+    """
 
     
     form = Scheduling_form()
@@ -92,6 +132,13 @@ def schedule():
     return render_template('schedule.html', form=form)
 
 def save_picture(form_picture):
+    """
+        Save Picture
+        Saves image in static/profile_pics folder
+        returns picture name
+        resizes image to 125x125
+        
+    """
     random_hex = secrets.token_hex(8)
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = random_hex + f_ext
@@ -106,6 +153,15 @@ def save_picture(form_picture):
 @app.route('/account', methods=['GET', 'POST'])
 @login_required
 def account():
+    """
+        Account Page
+        checks if user is already logged in
+        if user is logged in, redirects to dashboard
+        else:
+            Account Form
+            The Account Form is populated with the current user info
+            The Account Form is used to update the user information
+    """
     form = updateAccount()
 
     img_file = url_for('static', filename='profile_pics/' + current_user.image_file)
@@ -155,6 +211,15 @@ def manage_schedule(schedule_id):
 @app.route('/user_dashboard/<int:schedule_id>/update', methods=['GET', 'POST'])
 @login_required
 def update_schedule(schedule_id):
+    """
+        Update Schedule
+        checks if user is already logged in
+        if user is logged in, redirects to dashboard
+        else:
+            Update Schedule Form
+            The Update Schedule Form is populated with the current user info
+            The Update Schedule Form is used to update the user information
+    """
 
     schedule = Scheduling.query.get_or_404(schedule_id)
     form = Scheduling_form()
@@ -181,6 +246,16 @@ def update_schedule(schedule_id):
 @app.route('/user_dashboard/<int:schedule_id>/delete', methods=['POST']) 
 @login_required
 def delete_schedule(schedule_id):
+
+    """
+        Delete Schedule
+        checks if user is already logged in
+        if user is logged in, redirects to dashboard
+        else:
+            Delete Schedule Form
+            Deletes a schedule belong to the current user 
+    """
+
     schedule = Scheduling.query.get_or_404(schedule_id)
     if schedule.user_id != current_user.id:
         abort(403)
@@ -191,6 +266,10 @@ def delete_schedule(schedule_id):
 @app.route('/user_dashboard/<int:schedule_id>/collect', methods=['POST', 'GET'])
 @login_required
 def collect_schedule(schedule_id):
+    """
+        It's a button in Manage Schedule
+        That Marks a Shedule as Collected
+    """
     schedule = Scheduling.query.get_or_404(schedule_id)
     if schedule.user_id != current_user.id:
         abort(403)
@@ -202,6 +281,15 @@ def collect_schedule(schedule_id):
 @login_required
 def admin():
 
+    """
+        Admin Page
+        checks if current user is admin
+        then it will take you to the admin dashboard 
+        built by flask
+        
+        
+    """
+
     if not current_user.is_admin:
         abort(403)
         flash('Access Denied', 'danger')
@@ -211,6 +299,14 @@ def admin():
 @app.route('/admin_dashboard', methods=['GET', 'POST'])
 @login_required
 def admin_dashboard():
+    """
+
+        Admin Dashboard
+        checks if current user is admin
+        then it will take you to the admin dashboard
+        that contains all the users and their schedules
+    
+    """
 
     if not current_user.is_admin:
         abort(403)
@@ -226,16 +322,38 @@ def admin_dashboard():
     return render_template('admin_dashboard.html', users=users, user_schedule=user_schedule, number_of_users=number_of_users, collected=collected, datetime=datetime, unique_location=unique_location)     
 
 
+def perform_search(query):
+    users = User.query.filter(User.first_name.ilike(f'%{query}%')).all()
+    return [user.first_name for user in users]
+
+
 @app.route('/admin_dashboard/user_schedule', methods=['GET', 'POST'])
 @login_required
 def admin_user_schedule():
+
+    """
+        Admin User Schedule
+        checks if current user is admin
+        then it will take you to the admin dashboard's
+        Schedule page that contains all the users and their schedules
+        
+    """
 
     if not current_user.is_admin:
         abort(403)
         flash('Access Denied', 'danger')
 
+    query = request.args.get('query')
+    if query:
+        users = perform_search(query)
+    else:
+        users = User.query.all()
+
     user_schedule = Scheduling.query.all()
-    users = User.query.all()
+
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        return jsonify([user.first_name for user in users])
+
 
     return render_template('user_schedule.html', user_schedule=user_schedule, datetime=datetime, users=users)
 
@@ -243,6 +361,14 @@ def admin_user_schedule():
 @app.route('/admin_dashboard/users', methods=['GET', 'POST'])
 @login_required
 def users():
+
+    """
+        Admin Users
+        checks if current user is admin
+        then it will take you to the admin dashboard's
+        User page that contains all the users and their schedules
+        
+    """
 
     if not current_user.is_admin:
         abort(403)
@@ -255,7 +381,12 @@ def users():
 
 
 
+    
+
 @app.route('/logout')
 def logout():
+    """
+    it logs out the user
+    """
     logout_user()
     return redirect(url_for('home'))

@@ -1,204 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Smart Waste Management</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Smart Waste Management</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" />
+
     <style>
-        body {
-            background: linear-gradient(to right, #4facfe, #00f2fe);
-        }
-        .custom-size {
-            width: 90%;
-            height: 90%;
-        }
-        .hidden {
-            display: none;
-        }
-        .active {
-            font-weight: bold;
-            color: blue;
-        }
-        .step-indicator div {
-            cursor: pointer;
-        }
-        .step-indicator {
-    background-color: #f3f4f6;
-    border-radius: 8px;
-    padding: 12px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.step-indicator-item {
-    padding: 8px 16px;
-    border-radius: 9999px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin: 4px;
-}
-
-.step-indicator-item.active {
-    background-color: #2563eb;
-    color: #fff;
-}
-
-@media screen and (max-width: 768px) {
-    .step-indicator {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
+      .btn-primary {
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.3s;
+        margin-right: 2%;
+        background-color: #009933;
+      }
     </style>
-</head>
-<body class="flex justify-center items-center h-screen">
-    <div class="custom-size bg-white p-10 rounded-lg shadow-2xl overflow-auto">
-        <form id="registrationForm" action="" method="POST">
-            {{ form.hidden_tag()}}
-            
-          <div class="step-indicator flex flex-wrap justify-center gap-4 mb-8">
-            <div id="step1-indicator" class="step-indicator-item active">Step 1: Personal Info</div>
-            <div id="step2-indicator" class="step-indicator-item">Step 2: Account Info</div>
-            <div id="step3-indicator" class="step-indicator-item">Step 3: Location Info</div>
-            <div id="step4-indicator" class="step-indicator-item">Step 4: Summary</div>
+    <script src="script.js" defer></script>
+  </head>
+
+  <body class="bg-gray-100 flex justify-center items-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-96">
+      <h2 class="text-2xl font-bold mb-6">Registration</h2>
+
+      <form class="max-w-md mx-auto" method="POST">
+        {{form.hidden_tag()}}
+
+        <div class="grid md:grid-cols-2 md:gap-6">
+          <div class="relative z-0 w-full mb-5 group">
+            {{form.first_name(class="block py-2.5 px-0 w-full text-sm
+            text-gray-900 bg-transparent border-0 border-b-2 border-gray-300
+            appearance-none dark:text-white dark:border-gray-600
+            dark:focus:border-blue-500 focus:outline-none focus:ring-0
+            focus:border-blue-600 peer")}}
+            {{form.first_name.label(class="peer-focus:font-medium absolute
+            text-sm text-gray-500 dark:text-gray-400 duration-300 transform
+            -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0
+            rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600
+            peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100
+            peer-placeholder-shown:translate-y-0 peer-focus:scale-75
+            peer-focus:-translate-y-6")}}
+          </div>
+
+          <div class="relative z-0 w-full mb-5 group">
+            {{form.last_name( class="block py-2.5 px-0 w-full text-sm
+            text-gray-900 bg-transparent border-0 border-b-2 border-gray-300
+            appearance-none dark:text-white dark:border-gray-600
+            dark:focus:border-blue-500 focus:outline-none focus:ring-0
+            focus:border-blue-600 peer")}} {{form.last_name.label(
+            class="peer-focus:font-medium absolute text-sm text-gray-500
+            dark:text-gray-400 duration-300 transform -translate-y-6 scale-75
+            top-3 -z-10 origin-[0] peer-focus:start-0
+            rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600
+            peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100
+            peer-placeholder-shown:translate-y-0 peer-focus:scale-75
+            peer-focus:-translate-y-6")}}
+          </div>
         </div>
-        
-            <!-- Step 1: Personal Info -->
-            <div id="step1" class="step">
-                <h2 class="text-4xl font-extrabold mb-8 text-center text-gray-800">Step 1: Personal Info</h2>
-                <div class="grid grid-cols-2 gap-8 mb-6">
-                    <div>
-                        <label for="id" class="block text-lg font-semibold text-gray-700">ID <span class="text-red-500">*</span></label>
-                        {{form.ID}}
-                    </div>
-                    <div>
-                        <label for="first_name" class="block text-lg font-semibold text-gray-700">{{form.first_name.label}} <span class="text-red-500">*</span></label>
-                        {{form.first_name}}
-                        
-                    </div>
-                </div>
-                <div class="grid grid-cols-2 gap-8 mb-6">
-                    <div>
-                        <label for="second_name" class="block text-lg font-semibold text-gray-700">{{form.middle_name.label}}</label>
-                        {{form.middle_name}}
-                    </div>
-                    <div>
-                        <label for="last_name" class="block text-lg font-semibold text-gray-700">{{form.last_name.label}} <span class="text-red-500">*</span></label>
-                        {{form.last_name}}
-                    </div>
-                </div>
-                <div class="flex items-center justify-between mt-8">
-                    <button type="button" onclick="nextStep(2)" class="bg-blue-500 text-white py-3 px-8 rounded-lg hover:bg-blue-600">Next</button>
-                </div>
-            </div>
-            
-            <!-- Step 2: Account Info -->
-            <div id="step2" class="step hidden">
-                <h2 class="text-4xl font-extrabold mb-8 text-center text-gray-800">Step 2: Account Info</h2>
-                <div class="grid grid-cols-2 gap-8 mb-6">
-                    <div>
-                        <label for="email" class="block text-lg font-semibold text-gray-700">{{form.email.label}} <span class="text-red-500">*</span></label>
-                        {{form.email}}
-                    </div>
-                    <div>
-                        <label for="password" class="block text-lg font-semibold text-gray-700">{{form.password.label}} <span class="text-red-500">*</span></label>
-                        {{form.password}}
-                    </div>
-                </div>
-                <div class="grid grid-cols-2 gap-8 mb-6">
-                    <div>
-                        <label for="confirm_password" class="block text-lg font-semibold text-gray-700">{{form.confirm_password.label}} <span class="text-red-500">*</span></label>
-                        {{form.confirm_password}}
-                    </div>
-                    <div>
-                      <label for="sex" class="block text-lg font-semibold text-gray-700">{{form.sex.label}} <span class="text-red-500">*</span></label>
-                      {{form.sex}}
-                  </div>
-                </div>
-                <div class="flex items-center justify-between mt-8">
-                    <button type="button" onclick="prevStep(1)" class="bg-gray-500 text-white py-3 px-8 rounded-lg hover:bg-gray-600">Previous</button>
-                    <button type="button" onclick="nextStep(3)" class="bg-blue-500 text-white py-3 px-8 rounded-lg hover:bg-blue-600">Next</button>
-                </div>
-            </div>
-            
-            <!-- Step 3: Location Info -->
-            <div id="step3" class="step hidden">
-                <h2 class="text-4xl font-extrabold mb-8 text-center text-gray-800">Step 3: Location Info</h2>
-                <div class="grid grid-cols-2 gap-8 mb-6">
-                    <div>
-                        <label for="address" class="block text-lg font-semibold text-gray-700">{{form.address.label}} <span class="text-red-500">*</span></label>
-                        {{form.address}}
-                    </div>
-                    <div>
-                        <label for="phone_number" class="block text-lg font-semibold text-gray-700">{{form.phone_number.label}} <span class="text-red-500">*</span></label>
-                        {{form.phone_number}}
-                    </div>
-                </div>
-                <div class="grid grid-cols-2 gap-8 mb-6">
-                    <div>
-                        <label for="location" class="block text-lg font-semibold text-gray-700">{{form.location.label}} <span class="text-red-500">*</span></label>
-                        {{form.location}}
-                    </div>
-                    <div>
-                        <label for="house_number" class="block text-lg font-semibold text-gray-700">{{form.house_number.label}} <span class="text-red-500">*</span></label>
-                        {{form.house_number}}
-                    </div>
-                </div>
-                <div class="flex items-center justify-between mt-8">
-                    <button type="button" onclick="prevStep(2)" class="bg-gray-500 text-white py-3 px-8 rounded-lg hover:bg-gray-600">Previous</button>
-                    <button type="button" onclick="nextStep(4)" class="bg-blue-500 text-white py-3 px-8 rounded-lg hover:bg-blue-600">Next</button>
-                </div>
-            </div>
-            
-            <!-- Step 4: Summary -->
-            <div id="step4" class="step hidden">
-                <h2 class="text-4xl font-extrabold mb-8 text-center text-gray-800">Step 4: Summary</h2>
-                <div id="summary" class="text-lg"></div>
-                <div class="flex items-center justify-between mt-8">
-                  <div id="summary" class="text-lg"></div>
-                  <div class="flex items-center justify-between mt-8">
-                      <button type="button" onclick="prevStep(3)" class="bg-gray-500 text-white py-3 px-8 rounded-lg hover:bg-gray-600">Previous</button>
-                      <button type="submit" class="bg-green-500 text-white py-3 px-8 rounded-lg hover:bg-green-600">{{form.submit}}</button>
-                  </div>
-              </div>
-        
-      </div>
-      <script>
-          function nextStep(step) {
-              document.querySelectorAll('.step').forEach((el) => el.classList.add('hidden'));
-              document.getElementById(`step${step}`).classList.remove('hidden');
-              document.querySelectorAll('.step-indicator div').forEach((el) => el.classList.remove('active'));
-              document.getElementById(`step${step}-indicator`).classList.add('active');
-  
-              if (step === 4) {
-                  const form = document.getElementById('registrationForm');
-                  const summary = `
-                      <p><strong>ID:</strong> ${form.id.value}</p>
-                      <p><strong>First Name:</strong> ${form.first_name.value}</p>
-                      <p><strong>Second Name:</strong> ${form.second_name.value}</p>
-                      <p><strong>Last Name:</strong> ${form.last_name.value}</p>
-                      <p><strong>Email:</strong> ${form.email.value}</p>
-                      <p><strong>Password:</strong> ${form.password.value}</p>
-                      <p><strong>Sex:</strong> ${form.sex.value}</p>
-                      <p><strong>Address:</strong> ${form.address.value}</p>
-                      <p><strong>Phone Number:</strong> {{form.phone_number.data}}</p>
-                      <p><strong>Location:</strong> {{form.location.data}}</p>
-                      <p><strong>House Number:</strong> {{form.house_number.data}}</p>
-                  `;
-                  document.getElementById('summary').innerHTML = summary;
-              }
-          }
-  
-          function prevStep(step) {
-              document.querySelectorAll('.step').forEach((el) => el.classList.add('hidden'));
-              document.getElementById(`step${step}`).classList.remove('hidden');
-              document.querySelectorAll('.step-indicator div').forEach((el) => el.classList.remove('active'));
-              document.getElementById(`step${step}-indicator`).classList.add('active');
-          }
-      </script>
+
+        <div class="grid md:grid-cols-2 md:gap-6">
+          <div class="relative z-0 w-full mb-5 group">
+            {{form.email(class="block py-2.5 px-0 w-full text-sm text-gray-900
+            bg-transparent border-0 border-b-2 border-gray-300 appearance-none
+            dark:text-white dark:border-gray-600 dark:focus:border-blue-500
+            focus:outline-none focus:ring-0 focus:border-blue-600 peer")}}
+            {{form.email.label(class="peer-focus:font-medium absolute text-sm
+            text-gray-500 dark:text-gray-400 duration-300 transform
+            -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0
+            rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600
+            peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100
+            peer-placeholder-shown:translate-y-0 peer-focus:scale-75
+            peer-focus:-translate-y-6")}}
+          </div>
+
+          <div class="relative z-0 w-full mb-5 group">
+            {{form.sex( class="block py-2.5 px-0 w-full text-sm text-gray-900
+            bg-transparent border-0 border-b-2 border-gray-300 appearance-none
+            dark:text-white dark:border-gray-600 dark:focus:border-blue-500
+            focus:outline-none focus:ring-0 focus:border-blue-600 peer")}}
+            {{form.sex.label( class="peer-focus:font-medium absolute text-sm
+            text-gray-500 dark:text-gray-400 duration-300 transform
+            -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0
+            rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600
+            peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100
+            peer-placeholder-shown:translate-y-0 peer-focus:scale-75
+            peer-focus:-translate-y-6")}}
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 md:gap-6">
+          <div class="relative z-0 w-full mb-5 group">
+            {{form.address(class="block py-2.5 px-0 w-full text-sm text-gray-900
+            bg-transparent border-0 border-b-2 border-gray-300 appearance-none
+            dark:text-white dark:border-gray-600 dark:focus:border-blue-500
+            focus:outline-none focus:ring-0 focus:border-blue-600 peer")}}
+            {{form.address.label(class="peer-focus:font-medium absolute text-sm
+            text-gray-500 dark:text-gray-400 duration-300 transform
+            -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0
+            rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600
+            peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100
+            peer-placeholder-shown:translate-y-0 peer-focus:scale-75
+            peer-focus:-translate-y-6")}}
+          </div>
+
+          <div class="relative z-0 w-full mb-5 group">
+            {{form.location( class="block py-2.5 px-0 w-full text-sm
+            text-gray-900 bg-transparent border-0 border-b-2 border-gray-300
+            appearance-none dark:text-white dark:border-gray-600
+            dark:focus:border-blue-500 focus:outline-none focus:ring-0
+            focus:border-blue-600 peer")}} {{form.location.label(
+            class="peer-focus:font-medium absolute text-sm text-gray-500
+            dark:text-gray-400 duration-300 transform -translate-y-6 scale-75
+            top-3 -z-10 origin-[0] peer-focus:start-0
+            rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600
+            peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100
+            peer-placeholder-shown:translate-y-0 peer-focus:scale-75
+            peer-focus:-translate-y-6")}}
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 md:gap-6">
+          <div class="relative z-0 w-full mb-5 group">
+            {{form.password(class="block py-2.5 px-0 w-full text-sm
+            text-gray-900 bg-transparent border-0 border-b-2 border-gray-300
+            appearance-none dark:text-white dark:border-gray-600
+            dark:focus:border-blue-500 focus:outline-none focus:ring-0
+            focus:border-blue-600 peer")}}
+            {{form.password.label(class="peer-focus:font-medium absolute text-sm
+            text-gray-500 dark:text-gray-400 duration-300 transform
+            -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0
+            rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600
+            peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100
+            peer-placeholder-shown:translate-y-0 peer-focus:scale-75
+            peer-focus:-translate-y-6")}}
+          </div>
+
+          <div class="relative z-0 w-full mb-5 group">
+            {{form.confirm_password( class="block py-2.5 px-0 w-full text-sm
+            text-gray-900 bg-transparent border-0 border-b-2 border-gray-300
+            appearance-none dark:text-white dark:border-gray-600
+            dark:focus:border-blue-500 focus:outline-none focus:ring-0
+            focus:border-blue-600 peer")}} {{form.confirm_password.label(
+            class="peer-focus:font-medium absolute text-sm text-gray-500
+            dark:text-gray-400 duration-300 transform -translate-y-6 scale-75
+            top-3 -z-10 origin-[0] peer-focus:start-0
+            rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600
+            peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100
+            peer-placeholder-shown:translate-y-0 peer-focus:scale-75
+            peer-focus:-translate-y-6")}}
+          </div>
+        </div>
+        {{form.submit(class="btn-primary")}}
+      </form>
+    </div>
+
+    <script src="{{url_for('static', filename='js/user.js')}}"></script>
   </body>
-  </html>
-  
+</html>
