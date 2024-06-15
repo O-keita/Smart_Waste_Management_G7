@@ -58,28 +58,32 @@ def register():
     """
     if current_user.is_authenticated:
         return redirect(url_for('home'))
-    form = Registration()
-    if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(first_name=form.first_name.data,
-                    middle_name =form.middle_name.data,
-                    last_name=form.last_name.data,
-                    email=form.email.data, password=hashed_password,
-                    sex=form.sex.data, address=form.address.data, 
-                    house_number=form.house_number.data, 
-                    location=form.location.data, 
-                    phone_number=form.phone_number.data, 
-                    )
-        db.session.add(user)
-        db.session.commit()
-        flash(f'Account Created for {form.first_name.data}', 'success')
-        return redirect(url_for('login'))
-    else:
-        for field, errors in form.errors.items():
-            for error in errors:
-                flash(f"{getattr(form, field).label.text} - {error}", 'danger')
     
-    flash("Registration Failed, Please check your email", 'failed')
+
+    form = Registration()
+
+    
+    if form.validate_on_submit():
+        user_email  = User.query.filter_by(email=form.email.data).first()
+
+        if user_email:
+            flash("This Email is already been used", "failed")
+
+        else:
+
+            hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+            user = User(first_name=form.first_name.data,
+                        last_name=form.last_name.data,
+                        email=form.email.data, password=hashed_password,
+                        sex=form.sex.data, address=form.address.data, 
+                        house_number=form.house_number.data, 
+                        location=form.location.data, 
+                        phone_number=form.phone_number.data)
+            db.session.add(user)
+            db.session.commit()
+            flash(f'Account Created for {form.first_name.data}', 'success')
+            return redirect(url_for('login'))
+    
 
     return render_template('register.html', form=form)
 
