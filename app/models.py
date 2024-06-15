@@ -6,11 +6,10 @@ from flask_admin.contrib.sqla import ModelView
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer,  nullable= False, primary_key=True, autoincrement=True)
-
     first_name = db.Column(db.String(50), nullable=False)
-    middle_name = db.Column(db.String(50), nullable=False, default="")
     last_name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50), unique=True, nullable=False,)
     sex = db.Column(db.String(50), nullable=False, default='Male')

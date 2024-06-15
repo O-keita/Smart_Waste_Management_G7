@@ -1,48 +1,37 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, DateField, SelectField, IntegerField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, DateField, SelectField, IntegerField, EmailField
 
 from wtforms.validators import DataRequired, Length, Email, EqualTo, NumberRange, ValidationError
 from app.models import User
 from flask_login import current_user
 class Registration(FlaskForm):
 
-    ID =  StringField('ID', validators=[Length(min=1, max=20)], render_kw={"class":"mt-1 block w-full p-4 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none" })
+    
     first_name = StringField('First Name',
-                            validators=[DataRequired(), Length(min=2, max=20)], render_kw={"class":"mt-1 block w-full p-4 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none" })
-    middle_name =  StringField('Middle Name', render_kw={"class":"mt-1 block w-full p-4 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none" })
+                            validators=[DataRequired(), Length(min=2, max=20)])
     
     last_name =  StringField('Last Name',
-                             validators=[DataRequired(), Length(min=2, max=20)], render_kw={"class":"mt-1 block w-full p-4 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none" })
-    email =  StringField('Email',
-                          validators=[DataRequired(), Email()], render_kw={"class":"mt-1 block w-full p-4 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none" })
-    sex = SelectField('Sex', choices=[('Male', 'Male'), ('Female', 'Female')], render_kw={"class":"mt-1 block w-full p-4 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none" })
+                             validators=[DataRequired(), Length(min=2, max=20)])
+    email =  EmailField('Email',
+                          validators=[DataRequired()])
+    sex = SelectField('Sex', choices=[('Male', 'Male'), ('Female', 'Female')])
     address =  StringField('Address',
-                             validators=[DataRequired(), Length(min=2, max=20)], render_kw={"class":"mt-1 block w-full p-4 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none" })
+                             validators=[DataRequired(), Length(min=2, max=20)])
     house_number =  StringField('House Number',
-                             validators=[DataRequired(), Length(min=2, max=20)], render_kw={"class":"mt-1 block w-full p-4 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none" })
+                             validators=[DataRequired(), Length(min=2, max=20)])
     location =  StringField('Location',
-                             validators=[DataRequired(), Length(min=2, max=20)], render_kw={"class":"mt-1 block w-full p-4 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none" })
+                             validators=[DataRequired(), Length(min=2, max=20)])
     phone_number =  StringField('Phone Number',
-                             validators=[DataRequired()], render_kw={"class":"mt-1 block w-full p-4 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none" })
+                             validators=[DataRequired()])
 
     password = PasswordField('Password',
-                             validators=[DataRequired()], render_kw={'class': 'mt-1 block w-full p-4 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none'})
-    confirm_password = PasswordField('Confirm Password', validators=[DataRequired()], render_kw={'class': 'mt-1 block w-full p-4 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none'})
+                             validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired()])
 
 
 
-    submit = SubmitField('Sign Up', render_kw={"class":"bg-green-500 text-white py-3 px-8 rounded-lg hover:bg-green-600"})
-
-    def validate_first_name(self, field):
-        user = User.query.filter_by(first_name=field.data).first()
-        if user:
-            raise ValidationError('Name already in use.')
-
-    def validate_email(self, field):
-        user = User.query.filter_by(email=field.data).first()
-        if user:
-            raise ValidationError('Email already in use.')
+    submit = SubmitField('Sign Up')
 
 
 
@@ -84,15 +73,3 @@ class updateAccount(FlaskForm):
     submit = SubmitField('Update')
 
 
-    def validate_email(self, email):
-
-        if email.data != current_user.email:
-
-
-            user = User.query.filter_by(email=email.data).first()
-
-            if user:
-                raise ValidationError('Email already in use.')
-    def validate_password(self, password, confirm_password):
-        if password.data != confirm_password.data:   
-            raise ValidationError('Password not matched.')
