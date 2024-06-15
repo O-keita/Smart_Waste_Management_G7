@@ -24,9 +24,9 @@ class User(db.Model, UserMixin):
 
 
     def __repr__(self):
-        return f'User: {self.first_name}, Email: {self.email}' 
+        return f'User: {self.first_name}, Email: {self.email}'
 class Scheduling(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True) 
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     date = db.Column(db.DateTime, nullable=False)
     type = db.Column(db.String(50), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -36,16 +36,16 @@ class Scheduling(db.Model):
 
     def __repr__(self):
         return f'Scheduling: {self.date}, Type: {self.type}'
-    
+
 class controller(ModelView):
 
     column_list = ['first_name', 'last_name', 'email', 'phone_number', 'is_admin']
 
     def is_accessible(self):
-        return current_user.is_authenticated  
+        return current_user.is_admin   
 
     def not_auth(self):
-        return not current_user.is_authenticated 
+        return not current_user.is_authenticated
 
 
 
