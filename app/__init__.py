@@ -7,8 +7,11 @@ from flask_admin import Admin
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'b7318d5b51927a4dc8f7fad696408fc4'
+# # mysql db to be connected to after everything is done
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Okeita:mansaring@Okeita.mysql.pythonanywhere-services.com/Okeita$SmartWaste'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+#sqlite db
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
