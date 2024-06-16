@@ -67,7 +67,7 @@ def register():
         user_email  = User.query.filter_by(email=form.email.data).first()
 
         if user_email:
-            flash("This Email is already been used", "failed")
+            flash("This Email is already been used", "danger")
 
         else:
 
@@ -186,7 +186,8 @@ def account():
         form.first_name.data = current_user.first_name
         form.last_name.data = current_user.last_name
         form.email.data = current_user.email
- 
+    
+
         
     
     return render_template('account.html', img_file=img_file, form=form)

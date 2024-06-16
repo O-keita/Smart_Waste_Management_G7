@@ -12,6 +12,18 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
       rel="stylesheet"
     />
+    <style>
+      .btn-primary {
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.3s;
+        margin-right: 2%;
+        background-color: #009933;
+      }
+    </style>
     <script src="script.js" defer></script>
   </head>
 
@@ -20,12 +32,12 @@
       <h2 class="text-2xl font-bold mb-6">Login</h2>
 
       <form id="loginForm" method="POST">
-        {% with messages = get_flashed_messages(category_filter=['failed']) %}
-        {% if messages %}
+        {{ form.hidden_tag() }} {% with messages =
+        get_flashed_messages(category_filter=['failed']) %} {% if messages %}
         <div style="color: red" id="message">
           {% for message in messages %} {{ message }} {% endfor %}
         </div>
-        {% endif %} {% endwith %} {{ form.hidden_tag() }}
+        {% endif %} {% endwith %}
 
         <div class="mb-4 relative">
           <label for="username" class="block text-sm font-medium text-gray-700"
@@ -47,7 +59,7 @@
           </div>
         </div>
 
-        {{ form.submit }}
+        {{ form.submit(class='btn-primary') }}
 
         <p class="mt-4 text-center">
           Don't have an account?

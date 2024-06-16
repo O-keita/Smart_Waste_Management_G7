@@ -16,11 +16,17 @@
   --orange: #fd7238;
   --light-orange: #ffe0d3;
 }
+
 body {
   font-family: var(--lato);
   background-color: #f38686;
   margin: 0;
   padding: 0;
+}
+
+.alert {
+  margin-left: 20%;
+  background: transparent;
 }
 .alert-danger {
   color: red;

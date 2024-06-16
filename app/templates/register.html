@@ -23,11 +23,23 @@
         margin-right: 2%;
         background-color: #009933;
       }
+
+      .alert-danger {
+        color: red;
+
+        padding: 2%;
+      }
     </style>
   </head>
   <body class="bg-gray-100 flex justify-center items-center h-screen">
     <div class="bg-white p-8 rounded-lg shadow-lg w-96">
       <h2 class="text-2xl font-bold mb-6">Registration</h2>
+      <div class="flash" id="flash-message">
+        {% with messages = get_flashed_messages(with_categories=true) %} {% for
+        category, message in messages %}
+        <span class="alert alert-{{category}}">{{message}}</span>
+        {% endfor %} {% endwith %}
+      </div>
       <form method="POST">
         {{ form.hidden_tag() }}
         <div class="grid md:grid-cols-2 md:gap-6">
@@ -173,5 +185,12 @@
         <button type="submit" class="btn-primary">Sign Up</button>
       </form>
     </div>
+    <script>
+      message = document.getElementById("flash-message");
+
+      setTimeout(function () {
+        message.style.display = "None";
+      }, 2000);
+    </script>
   </body>
 </html>
